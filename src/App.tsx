@@ -20,6 +20,18 @@ const App = () => {
         setList(newList);
     }
 
+    const handleChangeDone = (isChecked: boolean, item: Item) => {
+        let newList = [...list]
+
+        for(var i in list){
+            if(list[i].id === item.id){
+                newList[i].done = isChecked;
+                break;
+            }
+        }
+        setList(newList);
+    }
+
     return (
         <Styles.container>
             <Styles.Area>
@@ -28,7 +40,7 @@ const App = () => {
                 <AddArea onEnter={handleAddTask} />
 
                 {list.map((item, index)=>(
-                    <ListItem key={index} item={item}></ListItem>
+                    <ListItem key={index} item={item} onChecked={handleChangeDone}></ListItem>
                 ))}
             </Styles.Area>
         </Styles.container>
